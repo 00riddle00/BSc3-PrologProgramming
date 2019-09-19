@@ -19,16 +19,16 @@ asmuo(petras, v, 70, automobiliai).
 asmuo(janina, m, 64, pokeris).
 asmuo(juozas, v, 40, parkour).
 asmuo(milda, m, 40, irklavimas).
-asmuo(algis, v, 35, parkour).
+asmuo(algis, v, 42, parkour).
 asmuo(aldona, m, 38, zvejyba).
 asmuo(feliksas, v, 39, siuvimas).
-asmuo(stase, m, 42, parkour).
+asmuo(stase, m, 42, kortos).
 asmuo(arvydas, v, 53, mezgimas).
-asmuo(prane, m, 50, parkour).
+asmuo(prane, m, 50, rasymas).
 asmuo(remis, v, 49, tinginyste).
-asmuo(kazyte, m, 51, parkour).
+asmuo(kazyte, m, 51, skaitymas).
 asmuo(daina, m, 25, tapymas).
-asmuo(saulius, v, 28, parkour).
+asmuo(saulius, v, 28, valgymas).
 
 pora(jonas, elze).
 pora(antanas, felicita).
@@ -79,11 +79,65 @@ trys_draugai(D1, D2, D3) :-
     AVG is (X + Y + Z) / 3,
     X - AVG < 10, Y - AVG < 10, Z- AVG < 10.
 
-sporto_saka(S) :- 
-    Sakos = [irklavimas, asdf, asdfas],
-    member(S, Sakos).
-
 sporto_veteranas(V) :-
     asmuo(V, _, AGE, SPORT),
     AGE > 80,
     member(SPORT, [buriavimas, grybavimas,irklavimas, parkour]).
+
+
+% true
+%anuke(daina, antanas).
+% true
+%anuke(daina, felicita).
+% false
+%anuke(daina, jonas).
+
+% true
+%brolis_ir_sesuo(juozas, stase).
+% false
+%brolis_ir_sesuo(juozas, prane).
+
+% true
+%trys_draugai(juozas, algis, stase).
+% false
+%trys_draugai(juozas, algis, jonas).
+
+% true
+%sporto_veteranas(jonas).
+% false
+%sporto_veteranas(algis).
+
+%run(Predicate) :-
+    %write(eval(run(anuke(daina, jonas)))),
+    %format('Go to grade ~w', [eval(run(anuke(daina, jonas)))]),
+    %X = Predicate,
+    %format('Go to grade ~w', true).
+    %write(X).
+    %boolean(eval(anuke(daina, jonas))).
+    %Predicate.
+    %Predicate::evaluate
+    %write() = brolis_ir_sesuo(juozas, prane),
+    %true = brolis_ir_sesuo(juozas, prane),
+    %true = brolis_ir_sesuo(juozas, stase).
+    %true = eval(Predicate).
+    %X is brolis_ir_sesuo(juozas, prane),
+
+    %true,
+    %X is true.
+    %return true.
+    %retract(brolis_ir_sesuo(juozas, prane)).
+    %X is and(brolis_ir_sesuo(juozas, prane), true),
+    %anuke(daina, jonas).
+    %X is brolis_ir_sesuo(juozas, prane),
+    %print(X).
+    %print(brolis_ir_sesuo(juozas, prane)).
+    % false
+    %
+    %write('Hello World!'),nl,
+    %retract
+    %X is brolis_ir_sesuo(juozas, prane),
+    %write(brolis_ir_sesuo(juozas, prane)).
+
+
+
+
