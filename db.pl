@@ -26,7 +26,7 @@ asmuo(stase, m, 42, kortos).
 asmuo(arvydas, v, 53, mezgimas).
 asmuo(prane, m, 50, rasymas).
 asmuo(remis, v, 49, tinginyste).
-asmuo(kazyte, m, 51, skaitymas).
+asmuo(kazyte, m, 51, parkour).
 asmuo(daina, m, 25, tapymas).
 asmuo(saulius, v, 28, valgymas).
 
@@ -77,13 +77,15 @@ trys_draugai(D1, D2, D3) :-
     asmuo(D1, _, X, P), asmuo(D2, _, Y, P), asmuo(D3, _, Z, P), 
     D1 \= D2, D1 \= D3, D2 \= D3,
     AVG is (X + Y + Z) / 3,
-    X - AVG < 10, Y - AVG < 10, Z- AVG < 10.
+    X1 is abs(X - AVG),
+    Y1 is abs(Y - AVG),
+    Z1 is abs(Z - AVG),
+    X1 < 10, Y1 < 10, Z1 < 10.
 
 sporto_veteranas(V) :-
     asmuo(V, _, AGE, SPORT),
     AGE > 80,
     member(SPORT, [buriavimas, grybavimas,irklavimas, parkour]).
-
 
 % true
 %anuke(daina, antanas).
@@ -98,46 +100,15 @@ sporto_veteranas(V) :-
 %brolis_ir_sesuo(juozas, prane).
 
 % true
-%trys_draugai(juozas, algis, stase).
+% trys_draugai(juozas, algis, kazyte).
 % false
-%trys_draugai(juozas, algis, jonas).
+% trys_draugai(juozas, algis, jonas).
+
+% atspausdins is viso 3 nPr 3 = 6 kombinacijas % (variantus)
+% trys_draugai(X, Y, Z).
 
 % true
 %sporto_veteranas(jonas).
 % false
 %sporto_veteranas(algis).
-
-%run(Predicate) :-
-    %write(eval(run(anuke(daina, jonas)))),
-    %format('Go to grade ~w', [eval(run(anuke(daina, jonas)))]),
-    %X = Predicate,
-    %format('Go to grade ~w', true).
-    %write(X).
-    %boolean(eval(anuke(daina, jonas))).
-    %Predicate.
-    %Predicate::evaluate
-    %write() = brolis_ir_sesuo(juozas, prane),
-    %true = brolis_ir_sesuo(juozas, prane),
-    %true = brolis_ir_sesuo(juozas, stase).
-    %true = eval(Predicate).
-    %X is brolis_ir_sesuo(juozas, prane),
-
-    %true,
-    %X is true.
-    %return true.
-    %retract(brolis_ir_sesuo(juozas, prane)).
-    %X is and(brolis_ir_sesuo(juozas, prane), true),
-    %anuke(daina, jonas).
-    %X is brolis_ir_sesuo(juozas, prane),
-    %print(X).
-    %print(brolis_ir_sesuo(juozas, prane)).
-    % false
-    %
-    %write('Hello World!'),nl,
-    %retract
-    %X is brolis_ir_sesuo(juozas, prane),
-    %write(brolis_ir_sesuo(juozas, prane)).
-
-
-
 
