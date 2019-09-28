@@ -140,6 +140,8 @@ is_even(X) :-
 
 say_hi :-
     write('What is your name? '),
+    % jei parasysiu 'Tomas'., nuskaitys kaip string.
+    % jei parasysiu "Tomas"., nuskaitys kaip ascii kodu lista.
     read(X),
     write('Hi '),
     write(X).
