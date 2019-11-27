@@ -16,23 +16,34 @@ kai kurių užduočių formulavimas yra procedūrinis, reikia siekti, kiek įman
 true.
 #####################################################################################
 */
+%lyginiai(S) :- true.
+%
 
-
-
-
-
-
+lyginiai([]).
+lyginiai([H|T]) :- 0 is mod(H,2), lyginiai(T).
 
 /*
 ################################ UZDUOTIS 2  ########################################
 [2] Paprasti nearitmetiniai predikatai:
 
-[2.2] apjungti(SS,R) - sąrašas R gaunamas iš duotojo sąrašų sąrašo SS, sujungus pastarojo sąrašus į bendrą sąrašą. Giliuosius sąrašus apdoroti nėra būtina. Pavyzdžiui:
+[2.2] apjungti(SS,R) - sąrašas R gaunamas iš duotojo sąrašų sąrašo SS, sujungus pastarojo sąrašus į bendrą sąrašą.
+Giliuosius sąrašus apdoroti nėra būtina. Pavyzdžiui:
 
 ?- apjungti([[a,b],[c],[d,[e,f], g]],R).
 R = [a,b,c,d,[e,f],g].
 #####################################################################################
 */
+
+apjungti([], R) :- R = [].
+apjungti([[]], R) :- R = [].
+
+%apjungti([H|T], R) :- R = [H|T].
+
+
+apjungti([[H1|[]],[H2|T2]], R) :- R = [H1,H2|T2].
+apjungti([[H1|T1],[H2|T2]], R) :- apjungti([T1, [H2|T2]], R).
+
+
 
 
 
