@@ -36,7 +36,7 @@ R = [a,b,c,d,[e,f],g].
 
 apjungti([], R) :- R = [].
 apjungti([[]], R) :- R = [].
-
+% todo dar corner case [[], [a,b], []]
 %apjungti([H|T], R) :- R = [H|T].
 
 
