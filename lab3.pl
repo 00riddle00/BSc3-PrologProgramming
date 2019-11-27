@@ -44,6 +44,11 @@ apjungti([[H1|[]],[H2|T2]], R) :- R = [H1,H2|T2].
 apjungti([[H1|T1],[H2|T2]], R) :- apjungti([T1, [H2|T2]], Ri), apjungti([[H1],Ri], R).
 apjungti([H|T],R) :- apjungti(T,Ri), apjungti([H,Ri], R), !.
 
+apjungti([[H1|[]],[H2|T2]], R) :- R = [H1,H2|T2].
+apjungti([[H1|T1],[H2|T2]], [H1|R]) :- apjungti([T1, [H2|T2]], R). 
+apjungti([H|T],[H|R]) :- apjungti(T,R), !.
+
+
 %2.2
 idek([A], [X|Y], R):- R = [A, X|Y].
 idek([A,B|C], [X|Y], R):- idek([B|C],[X|Y], RN), idek([A], RN, R).
