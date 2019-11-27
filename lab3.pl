@@ -41,7 +41,7 @@ apjungti([[]], R) :- R = [].
 
 
 apjungti([[H1|[]],[H2|T2]], R) :- R = [H1,H2|T2].
-apjungti([[H1|T1],[H2|T2]], R) :- apjungti([T1, [H2|T2]], R).
+apjungti([[H1|T1],[H2|T2]], R) :- apjungti([T1, [H2|T2]], Ri), apjungti([[H1],Ri], R).
 
 
 
