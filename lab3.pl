@@ -48,9 +48,21 @@ true.
 #####################################################################################
 */
 
+% todo atkirta panaudoti
 
+/*ieina(S,R) :- ieina(S,R,0).*/
+%ieina([],[],TMP) :- TMP = 0.
+%ieina([],[Hi|Ti],TMP) :- TMP = 0.
+%ieina([H|T],[Hi|Ti], TMP) :- H = Hi, ieina(T,Ti,0).
+%ieina([H|T],[Hi|Ti], TMP) :- ieina(T, [Hi|Ti], 1).
 
+ieina([],[]).
+ieina([],[Hi|Ti]).
+ieina([H|T],[Hi|Ti]) :- H = Hi, ieina(T,Ti).
+ieina([H|T],[Hi|Ti]) :- ieina(T, [Hi|Ti]), ieina([H],Ti).
 
+%ieina([Hi|Ti],[H|T]) :- H = Hi, ieina(Ti,T).
+%ieina([Hi|Ti],[H|T]) :- ieina(T, [Hi|Ti]).
 
 
 /*
