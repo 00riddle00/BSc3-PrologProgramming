@@ -46,6 +46,10 @@ apjungti(A,[B],R) :- R = [A,B].
 
 [3.1] ieina(S,R) - teisingas, kai visi duoto sąrašo S elementai įeina į sąrašą R. Pavyzdžiui:
 
+% bugs
+?- ieina([5,5,2,3],[3,2,4,1,5]). -> true
+?- ieina([5,5,2,3,3],[3,2,4,1,5]). -> false/no
+
 ?- ieina([1,4],[3,2,4,1,5]).
 true.
 #####################################################################################
