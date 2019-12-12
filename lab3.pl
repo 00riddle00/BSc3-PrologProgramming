@@ -33,6 +33,8 @@ R = [a,b,c,d,[e,f],g].
 */
 
 apjungti([], R) :- R = [].
+apjungti([[],[]], R) :- R = [].
+apjungti([[],[H|T]], R) :- R = [H|T].
 apjungti([[H1],[H2|T2]], R) :- R = [H1,H2|T2].
 apjungti([[H1|T1],A], [H1|R]) :- apjungti([T1, A], R). 
 apjungti([H|T],R) :- apjungti(T,Ri), apjungti([H,Ri], R), !.
@@ -78,37 +80,20 @@ Sum = [9,4,6,1,6,2].
 #####################################################################################
 */
 
-%suma([H|T], [], S).
-%suma([], [Hi|Ti], S).
-
-%suma([L], [Li], S) :- SUM is L + Li, S = [SUM].
-
-%suma([H|T],[L], S) :- suma(T, [L], S).
-%suma([L],[Hi|Ti], S) :- suma([L], Ti, Si), %S = [Hi|Si].
-
-%suma([H|T],[Hi|Ti], S) :- suma(T, Ti, Si), SUM is H + Hi, S = [SUM|Si].
-
-
-%removeLast(T, T2), removeLast(Ti, Ti2), suma(T2, Ti2, S2), S = [S1|S2].
-
 sum_begin(A,B,C) :- sum(A,B,C,0).
 
-sum([],[],M).
-%sum([H],[],[H],0).
-%sum([],[H],[H],0).
-sum(A,[],A,0).
-sum([],A,A,0).
+sum([],[],S,1) :- S = [1].
+sum(A,[],S,0).
+sum([],A,S,0).
 sum(A,B,C,M) :- suma(A,B,S1,M,Mout), removeLast(A, A1), removeLast(B, B1), sum(A1, B1, S2, Mout), apjungti([S2, [S1]], C).
 
 suma([], [], S, M, Mout).
 
 suma([H], [], S, 1, Mout) :- SUM is H + 1, SUM >= 10, write('here2'), S is SUM - 10, Mout = 1.
 suma([H], [], S, 1, Mout) :- SUM is H + 1, S = SUM, Mout = 0.
-%suma([H], [], S, 0, Mout).
 
 suma([], [H], S, 1, Mout) :- SUM is H + 1, SUM >= 10, write('here2'), S is SUM - 10, Mout = 1.
 suma([], [H], S, 1, Mout) :- SUM is H + 1, S = SUM, Mout = 0.
-%suma([], [H], S, 0, Mout).
 
 suma([H|T], [], S, M, Mout) :- suma(T, [], S, M, Mout).
 suma([], [Hi|Ti], S, M, Mout) :- suma([], Ti, S, M, Mout).
@@ -122,12 +107,22 @@ suma([L],[Hi|Ti], S, M, Mout) :- suma([L], Ti, S, M, Mout).
 suma([H|T],[Hi|Ti], S, M, Mout) :- suma(T, Ti, S, M, Mout).
 
 removeLast([], []).
-%removeLast([], A).
 removeLast([H1], []).
 removeLast([H1,H2], [H1]).
 removeLast([H|T], RES) :- removeLast(T, RES1), RES = [H|RES1].
 
+% Test cases:
+
 %?- sum_begin([2,3,4], [2,5,8,3,4], Sum).
 %?- sum_begin([2,5,8,3,4], [2,3,4], Sum).
+
 %?- sum_begin([1], [2,5,8,3,4], Sum).
+%?- sum_begin([2,5,8,3,4], [1], Sum).
+
+% sum_begin([0], [1,2,3], Sum).
+% sum_begin([], [1,2,3], Sum).
+
 %?- sum_begin([1], [0,9,9], Sum).
+
+%?- sum_begin([1], [9,9,9], Sum).
+
