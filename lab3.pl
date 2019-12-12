@@ -82,23 +82,27 @@ Sum = [9,4,6,1,6,2].
 
 sum_begin(A,B,C) :- sum(A,B,C,0).
 
-sum([],[],S,1) :- S = [1].
-sum(A,[],S,0).
-sum([],A,S,0).
-sum(A,B,C,M) :- suma(A,B,S1,M,Mout), removeLast(A, A1), removeLast(B, B1), sum(A1, B1, S2, Mout), apjungti([S2, [S1]], C).
+sum([],[],S,0).
+sum([],[],S,1) :- write('here'), S = [1].
+%sum(A,[],S,0).
+%sum([],A,S,0).
+sum(A,B,C,M) :- suma(A,B,S1,M,Mout), removeLast(A, A1), removeLast(B, B1), sum(A1, B1, S2, Mout), apjungti([S2, [S1]], C), !.
 
 suma([], [], S, M, Mout).
 
-suma([H], [], S, 1, Mout) :- SUM is H + 1, SUM >= 10, write('here2'), S is SUM - 10, Mout = 1.
+suma([H], [], S, 0, Mout) :- S is H.
+suma([], [H], S, 0, Mout) :- S is H.
+
+suma([H], [], S, 1, Mout) :- SUM is H + 1, SUM >= 10, S is SUM - 10, Mout = 1.
 suma([H], [], S, 1, Mout) :- SUM is H + 1, S = SUM, Mout = 0.
 
-suma([], [H], S, 1, Mout) :- SUM is H + 1, SUM >= 10, write('here2'), S is SUM - 10, Mout = 1.
+suma([], [H], S, 1, Mout) :- SUM is H + 1, SUM >= 10, S is SUM - 10, Mout = 1.
 suma([], [H], S, 1, Mout) :- SUM is H + 1, S = SUM, Mout = 0.
 
 suma([H|T], [], S, M, Mout) :- suma(T, [], S, M, Mout).
 suma([], [Hi|Ti], S, M, Mout) :- suma([], Ti, S, M, Mout).
 
-suma([L], [Li], S, M, Mout) :- SUM is L + Li + M, SUM >= 10, write('here'), S is SUM - 10, Mout = 1.
+suma([L], [Li], S, M, Mout) :- SUM is L + Li + M, SUM >= 10, S is SUM - 10, Mout = 1.
 suma([L], [Li], S, M, Mout) :- SUM is L + Li + M, S = SUM, Mout = 0.
 
 suma([H|T],[L], S, M, Mout) :- suma(T, [L], S, M, Mout).
@@ -123,6 +127,8 @@ removeLast([H|T], RES) :- removeLast(T, RES1), RES = [H|RES1].
 % sum_begin([], [1,2,3], Sum).
 
 %?- sum_begin([1], [0,9,9], Sum).
+
+%?- sum_begin([1,0,1], [0,9,9], Sum).
 
 %?- sum_begin([1], [9,9,9], Sum).
 
