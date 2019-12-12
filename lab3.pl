@@ -36,6 +36,7 @@ apjungti([], R) :- R = [].
 apjungti([[H1],[H2|T2]], R) :- R = [H1,H2|T2].
 apjungti([[H1|T1],A], [H1|R]) :- apjungti([T1, A], R). 
 apjungti([H|T],R) :- apjungti(T,Ri), apjungti([H,Ri], R), !.
+apjungti(A,[B],R) :- R = [A,B].
 
 /*
 ################################ UZDUOTIS 3  ########################################
@@ -92,11 +93,13 @@ Sum = [9,4,6,1,6,2].
 
 sum(A,[],A).
 sum([], B, B).
-sum(A,B,C) :- suma(A,B,S1), removeLast(A, A1), removeLast(B, B1), sum(A1, B1, S2), C = [S2,S1].
+%sum(A,B,C) :- suma(A,B,S1), removeLast(A, A1), removeLast(B, B1), sum(A1, B1, S2), C = [S2,S1].
+sum(A,B,C) :- suma(A,B,S1), removeLast(A, A1), removeLast(B, B1), sum(A1, B1, S2), apjungti([S2, [S1]], C).
 
 suma([H|T], [], S).
 suma([], [Hi|Ti], S).
 
+suma([L], [Li], S) :- SUM is L + Li, SUM >= 10, write('here'), S is SUM - 10, M = 1.
 suma([L], [Li], S) :- SUM is L + Li, S = SUM.
 
 suma([H|T],[L], S) :- suma(T, [L], S).
