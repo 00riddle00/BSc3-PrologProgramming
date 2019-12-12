@@ -77,6 +77,43 @@ Sum = [9,4,6,1,6,2].
 #####################################################################################
 */
 
+%suma([H|T], [], S).
+%suma([], [Hi|Ti], S).
+
+%suma([L], [Li], S) :- SUM is L + Li, S = [SUM].
+
+%suma([H|T],[L], S) :- suma(T, [L], S).
+%suma([L],[Hi|Ti], S) :- suma([L], Ti, Si), %S = [Hi|Si].
+
+%suma([H|T],[Hi|Ti], S) :- suma(T, Ti, Si), SUM is H + Hi, S = [SUM|Si].
+
+
+%removeLast(T, T2), removeLast(Ti, Ti2), suma(T2, Ti2, S2), S = [S1|S2].
+
+sum(A,[],A).
+sum([], B, B).
+sum(A,B,C) :- suma(A,B,S1), removeLast(A, A1), removeLast(B, B1), sum(A1, B1, S2), C = [S2,S1].
+
+suma([H|T], [], S).
+suma([], [Hi|Ti], S).
+
+suma([L], [Li], S) :- SUM is L + Li, S = SUM.
+
+suma([H|T],[L], S) :- suma(T, [L], S).
+suma([L],[Hi|Ti], S) :- suma([L], Ti, S).
+
+%suma([H|T],[Hi|Ti], S) :- suma(T, Ti, Si). %, SUM is H + Hi, S = [SUM|Si].
+suma([H|T],[Hi|Ti], S) :- suma(T, Ti, S).
+
+removeLast([], []).
+removeLast([H1], []).
+removeLast([H1,H2], [H1]).
+removeLast([H|T], RES) :- removeLast(T, RES1), RES = [H|RES1].
+
+%[2,3,4]
+%[2,5,8,3,4]
+%?- sum([2,3,4], [2,5,8,3,4], Sum).
+
 
 
 
