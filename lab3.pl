@@ -88,8 +88,6 @@ sum_begin(A,B,C) :- sum(A,B,C,0).
 
 sum([],[],S,0).
 sum([],[],S,1) :- S = [1].
-%sum(A,[],S,0).
-%sum([],A,S,0).
 sum(A,B,C,M) :- suma(A,B,S1,M,Mout), removeLast(A, A1), removeLast(B, B1), sum(A1, B1, S2, Mout), apjungti([S2, [S1]], C), !.
 
 suma([], [], S, M, Mout).
