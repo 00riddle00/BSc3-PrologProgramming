@@ -1,3 +1,4 @@
+
 /*
 #################################### SALYGA  ########################################
 [S] Žirgų kontrolė.
@@ -10,6 +11,7 @@ neužimti lentos laukeliai būtų kontroliuojami šių žirgų.
 % Poz = Pozicijos
 rasti(Nlentos, Nzirgu, Poz) :-
     genLenta(Nlentos, Lenta),
+    %write(Lenta).
     genZirgai(NZirgu, Lenta, Poz),
     tinka(Nlentos, Poz).
     
@@ -26,7 +28,12 @@ tinka(Nlentos, Poz) :-
 yra_nekontr_lang(Nlentos, Poz) :-
     genLaukelis(Nlentos, X, Y, Laukelis),
     \+(member(Laukelis, Poz)),
-    \+(member(ZirgoLaukelis, Poz), kerta(ZirgoLaukelis, Laukelis)).
+    \+(kontroliuojamas(Laukelis, Poz)).
+
+kontroliuojamas(Laukelis, Poz) :-
+    member(ZirgoLaukelis, Poz),
+    write('here'),
+    kerta(ZirgoLaukelis, Laukelis).
 
 kerta([Zx,Zy], [Lx,Ly]) :-
     member([Lx,Ly], 
