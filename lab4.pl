@@ -70,4 +70,5 @@ subset(Len, [_|Tail], NTail):-
 
 /* ################ Testing ####################*/
  % ?-rasti(3, 5, Pos). -> 28 variantai (visur ieina [2,2] - centras)
- % ...-> visos kombinacijos -> 126 variantai = P(3x3,5)
+ % ...-> visos kombinacijos -> 126 variantai = C(3x3,5)
+ % ?-rasti(8, 12, Pos). -> paskaiciavau, kad skaiciuos 233 dienas
